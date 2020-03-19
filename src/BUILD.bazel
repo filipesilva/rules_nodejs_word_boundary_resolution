@@ -1,0 +1,15 @@
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+
+licenses(["notice"])
+package(default_visibility = ["//visibility:public"])
+
+ts_library(
+    name = "repro",
+    srcs = [
+      ":name-something/index.ts",
+      ":nameDASHsomething/index.ts",
+      ":not-name-something/index.ts",
+    ],
+    module_name = "@repro/repro",
+    module_root = "index.d.ts",
+)

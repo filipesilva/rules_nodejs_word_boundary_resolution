@@ -1,0 +1,27 @@
+load("@npm_bazel_jasmine//:index.bzl", "jasmine_node_test")
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+
+licenses(["notice"])
+
+ts_library(
+    name = "name",
+    srcs = [
+      ":index.ts",
+      ":index_spec.ts",
+    ],
+    module_name = "@repro/repro/name",
+    module_root = "index.d.ts",
+    deps = [
+        "//src:repro",
+        "@npm//@types/jasmine",
+    ],
+)
+
+jasmine_node_test(
+    name = "name_test",
+    srcs = [":name"],
+    deps = [
+        "@npm//jasmine",
+        "@npm//source-map",
+    ],
+)
